@@ -1,183 +1,181 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Show Recipe</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
-          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
-
-    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-</head>
-<body>
 <!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
-<div class="container-fluid" style="margin-top: 20px">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="pannel-group">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h1 class="panel-title" th:text="${recipe.description}">Recipe Description Here!</h1>
-                            </div>
 
-                            <div class="col-md-1">
-                                <a class="btn btn-default" href="#"
-                                   th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button">Change Image</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h5>Categories:</h5>
-                            </div>
-                            <div class="col-md-3">
-                                <ul>
-                                    <li th:remove="all">cat one</li>
-                                    <li th:remove="all">cat two</li>
-                                    <li th:each="category : ${recipe.categories}"
-                                        th:text="${category.getDescription()}">cat three
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6">
-                                <img src="../../static/images/guacamole400x400WithX.jpg"
+<head>
+  <!-- Basic meta info
+  ==================== -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>${recipe.description} | Recipe Book</title>
+
+  <!-- Favicon
+  ============ -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/apple-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/apple-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/apple-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/apple-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/apple-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-icon-180x180.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon/android-icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96x96.png" />
+
+  <!-- CSS files
+  ============== -->
+  <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"  />
+  <link rel="stylesheet" type="text/css" href="/css/animate.min.css" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+
+  <!-- Modernizr file
+  =================== -->
+  <script charset="utf-8" type="text/javascript "src="/js/modernizr.custom.js"></script>
+
+</head>
+
+<body>
+
+  <!-- Splash Screen
+  ================== -->
+  <div id="splash"></div>
+
+  <!-- Website Logo
+  ================= -->
+  <section id="logo">
+    <div class="container text-center wow pulse">
+      <img src="/images/logo-white.svg" alt="logo" />
+      <br />
+      <h1>Recipe Book</h1>
+    </div>
+  </section>
+
+  <!-- Recipe Section
+  =================== -->
+  <section id="recipe">
+    <div class="container">
+      <div class="row">
+        <!-- Title -->
+        <div class="col-12">
+          <h2 class="panel-title" th:text="${recipe.description}">Recipe Description Here!</h2>
+        </div>
+      </div>
+      <div class="row vertical-align">
+        <div class="col-12">
+          <!-- Picture -->
+          <div class="col-md-8 pull-left wow swing">
+            <img src="/static/images/guacamole400x400WithX.jpg"
                                      th:src="@{'/recipe/' + ${recipe.id} + '/recipeimage'}"
                                      width="200" height="200">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h5>Prep Time:</h5>
-                            </div>
-                            <div class="col-md-3">
-                                <p th:text="${(recipe.prepTime) +  '  Min'}">30 min</p>
-                            </div>
-                            <div class="col-md-3">
-                                <h5>Difficulty:</h5>
-                            </div>
-                            <div class="col-md-3">
-                                <p th:text="${recipe.difficulty}">Easy</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h5>Cooktime:</h5>
-                            </div>
-                            <div class="col-md-3">
-                                <p th:text="${(recipe.cookTime  +  '  Min')}">30 min</p>
-                            </div>
-                            <div class="col-md-3">
-                                <h5>Servings:</h5>
-                            </div>
-                            <div class="col-md-3">
-                                <p th:text="${recipe.servings}">4</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h5>Source:</h5>
-                            </div>
-                            <div class="col-md-3">
-                                <p th:text="${recipe.source}">30 min</p>
-                            </div>
-                            <div class="col-md-3">
-                                <h5>URL:</h5>
-                            </div>
-                            <div class="col-md-3">
-                                <p><a href="#" th:href="@{recipe.url}">View Original</a></p>
-                            </div>
-                        </div>
-                    </div>
+          </div>
+          <!-- Info -->
+          <div class="col-md-4 pull-right wow lightSpeedIn">
+            <div class="recipe-info">
+              <h3>Info</h3>
+              <!-- Time -->
+              <div class="row">
+                <div class="col-2 text-center">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
                 </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-md-11 ">
-                                <h1 class="panel-title">Ingredients</h1>
-                            </div>
-                            <div class="col-md-1">
-                                <a class="btn btn-default" href="#"
-                                   th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">View</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <ul>
-                                    <li th:remove="all">1 Cup of milk</li>
-                                    <li th:remove="all">1 Teaspoon of chocolate</li>
-                                    <li th:each="ingredient : ${recipe.ingredients}"
-                                        th:text="${(ingredient.getAmount() +
-                                        ' ' + ingredient.uom.getDescription() +
-                                        ' - ' + ingredient.getDescription())}">1 Teaspoon of Sugar
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-6">Time</div>
+                <div class="col-4"><p th:text="${(recipe.prepTime) +  '  Min'}">30 min</p></div>
+              </div>
+              <!-- Difficulty -->
+              <div class="row">
+                <div class="col-2 text-center">
+                  <i class="fa fa-area-chart" aria-hidden="true"></i>
                 </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h1 class="panel-title">Directions</h1>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p th:text="${recipe.directions}">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                    elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus
-                                    et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies
-                                    nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede
-                                    justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-                                    imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-                                    Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate
-                                    eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac,
-                                    enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus
-                                    viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam
-                                    ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam
-                                    rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero,
-                                    sit amet adipiscing sem neque sed ipsum.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-6">Difficulty</div>
+                <div class="col-4">
+                  <p th:text="${recipe.difficulty}">Easy</p>
                 </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h1 class="panel-title">Notes</h1>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p th:text="${recipe.notes.recipeNotes}">Lorem ipsum dolor sit amet, consectetuer
-                                    adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                                    penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                                    ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-                                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
-                                    rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis
-                                    pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean
-                                    vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae,
-                                    eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.
-                                    Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.
-                                    Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.
-                                    Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper
-                                    libero, sit amet adipiscing sem neque sed ipsum.</p>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+              <!-- Serves -->
+              <div class="row">
+                <div class="col-2 text-center">
+                  <i class="fa fa-users" aria-hidden="true"></i>
                 </div>
+                <div class="col-6">Servings</div>
+                <div class="col-4"><p th:text="${recipe.servings}">4</p></div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+      <!-- Ingredients -->
+      <div class="row wow slideInUp">
+        <div class="col-12">
+          <div class="recipe-ingredients">
+            <h3>Ingredients</h3>
+            <dl class="ingredients-list" th:each="ingredient : ${recipe.ingredients}">
+              <dt th:text="${(ingredient.getAmount() + ' ' + ingredient.uom.getDescription())}">1 Teaspoon of</dt>
+              <dd th:text="${ingredient.getDescription()}">Sugar</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <!-- Directions -->
+      <div class="row wow slideInUp">
+        <div class="col-12">
+          <div class="recipe-directions">
+            <h3>Directions</h3>
+            <p th:text="${recipe.directions}">
+          </div>
+        </div>
+      </div>
+      <!-- Back to recipes -->
+      <div class="row wow rollIn">
+        <div class="col-12 text-center">
+          <a href="index.html">
+            <i class="fa fa-backward" aria-hidden="true"></i>
+            Go to back to recipes.
+          </a>
+        </div>
+      </div>
     </div>
-</div>
+  </section>
+
+  <!-- Website Footer
+  =================== -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <!-- About -->
+        <div class="col-md-6 col-sm-12 text-center">
+          <h3>About</h3>
+          <div class="footer-about">
+            "A recipe book is one that you use daily and what we in our family
+            call 'a living book' — a book that you use all the time,
+            not just read once and discard on the shelf.
+            Recipes are by nature derivative and meant to be shared -
+            that is how they improve, are changed, how new ideas are formed. ”
+          </div>
+        </div>
+        <!-- Author -->
+        <div class="col-md-6 col-sm-12 text-center">
+          <div class="footer-author">
+            Made with
+            <i class="fa fa-heart" aria-hidden="true"></i>
+            love by
+            <a href="https://jraleman.com/" target="_blank">Jose Ramon</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- JavaScript files
+  ===================== -->
+  <script charset="utf-8" src="/js/jquery-3.3.1.min.js"></script>
+  <script charset="utf-8" src="/js/bootstrap.min.js"></script>
+  <script charset="utf-8" src="/js/wow.min.js"></script>
+  <script charset="utf-8" src="/js/scripts.js"></script>
 </body>
+
 </html>

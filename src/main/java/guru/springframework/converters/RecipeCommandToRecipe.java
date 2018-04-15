@@ -16,12 +16,14 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
     private final CategoryCommandToCategory categoryConveter;
     private final IngredientCommandToIngredient ingredientConverter;
     private final NotesCommandToNotes notesConverter;
+    private final DirectionCommandToDirection directionConverter;
 
     public RecipeCommandToRecipe(CategoryCommandToCategory categoryConveter, IngredientCommandToIngredient ingredientConverter,
-                                 NotesCommandToNotes notesConverter) {
+                                 NotesCommandToNotes notesConverter, DirectionCommandToDirection directionConverter) {
         this.categoryConveter = categoryConveter;
         this.ingredientConverter = ingredientConverter;
         this.notesConverter = notesConverter;
+        this.directionConverter = directionConverter;
     }
 
     @Synchronized
@@ -38,7 +40,6 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
         recipe.setPrepTime(source.getPrepTime());
         recipe.setDescription(source.getDescription());
         recipe.setDifficulty(source.getDifficulty());
-        recipe.setDirections(source.getDirections());
         recipe.setServings(source.getServings());
         recipe.setSource(source.getSource());
         recipe.setUrl(source.getUrl());
@@ -52,6 +53,11 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe> {
         if (source.getIngredients() != null && source.getIngredients().size() > 0){
             source.getIngredients()
                     .forEach(ingredient -> recipe.getIngredients().add(ingredientConverter.convert(ingredient)));
+        }
+        
+        if (source.getDirections() != null && source.getDirections().size() > 0){
+            source.getDirections()
+                    .forEach(direction -> recipe.getDirections().add(directionConverter.convert(direction)));
         }
 
         return recipe;

@@ -26,11 +26,11 @@ public class Recipe {
     private String source;
     private String url;
 
-    @Lob
-    private String directions;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients = new HashSet<>();
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Direction> directions = new HashSet<>();
 
     @Lob
     private Byte[] image;
@@ -57,6 +57,12 @@ public class Recipe {
     public Recipe addIngredient(Ingredient ingredient){
         ingredient.setRecipe(this);
         this.ingredients.add(ingredient);
+        return this;
+    }
+    
+    public Recipe addDirection(Direction direction){
+    	direction.setRecipe(this);
+        this.directions.add(direction);
         return this;
     }
 }
