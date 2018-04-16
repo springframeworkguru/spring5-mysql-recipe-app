@@ -9,7 +9,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${recipe.description} | Recipe Book</title>
+  <title th:text="${(recipe.description) +  ' | Recipe Book'}">My recipe | Recipe Book</title>
 
   <!-- Favicon
   ============ -->
@@ -34,10 +34,11 @@
   <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"  />
   <link rel="stylesheet" type="text/css" href="/css/animate.min.css" />
   <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+ 
 
   <!-- Modernizr file
   =================== -->
-  <script charset="utf-8" type="text/javascript "src="/js/modernizr.custom.js"></script>
+  <script charset="utf-8" type="text/javascript " src="/js/modernizr.custom.js"></script>
 
 </head>
 
@@ -51,9 +52,21 @@
   ================= -->
   <section id="logo">
     <div class="container text-center wow pulse">
-      <img src="/images/logo-white.svg" alt="logo" />
-      <br />
-      <h1>Recipe Book</h1>
+		<nav class="navbar navbar-expand-lg navbar-dark">
+		  <a class="navbar-brand" href="#">
+		   <img src="/images/logo.png" width="100" height="100" alt="logo"/>
+		  </a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+   			<span class="navbar-toggler-icon"></span>
+ 		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNav">
+		    <ul class="navbar-nav">
+		  	  <li class="nav-item">
+            	<a class="nav-link" href="/">Home</a>
+      	  	  </li>
+      	    </ul>
+      	  </div>
+		</nav>
     </div>
   </section>
 
@@ -73,7 +86,8 @@
           <div class="col-md-8 pull-left wow swing">
             <img src="/static/images/guacamole400x400WithX.jpg"
                                      th:src="@{'/recipe/' + ${recipe.id} + '/recipeimage'}"
-                                     width="200" height="200">
+                                     width="400" height="400"
+                                     class="recipe-picture">
           </div>
           <!-- Info -->
           <div class="col-md-4 pull-right wow lightSpeedIn">
@@ -126,14 +140,16 @@
         <div class="col-12">
           <div class="recipe-directions">
             <h3>Directions</h3>
-            <p th:text="${recipe.directions}">
+           	<ol>
+				<li th:each="direction : ${recipe.directions}" th:text="${direction.getDescription()}">Preheat oven to 325.</li>
+			</ol>
           </div>
         </div>
       </div>
       <!-- Back to recipes -->
       <div class="row wow rollIn">
         <div class="col-12 text-center">
-          <a href="index.html">
+          <a href="/">
             <i class="fa fa-backward" aria-hidden="true"></i>
             Go to back to recipes.
           </a>
@@ -164,7 +180,7 @@
             Made with
             <i class="fa fa-heart" aria-hidden="true"></i>
             love by
-            <a href="https://jraleman.com/" target="_blank">Jose Ramon</a>.
+            <a href="https://github.com/Ilmryn/" target="_blank">Sylvain Quiniou</a>.
           </div>
         </div>
       </div>

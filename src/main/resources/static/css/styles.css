@@ -16,10 +16,10 @@
 */
 
 body {
-  background-color: #a44c9f;
+  background-color: #2c3e50;
   color: #666;
   font-size: 16px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   line-height: 1.50;
   overflow-x: hidden;
@@ -68,28 +68,15 @@ table {
 
 #logo {
   width: 100%;
-  min-height: 250px;
+  min-height: 100px;
   margin-left: auto;
   margin-right: auto;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image:
-    radial-gradient(rgba(126, 0, 119, 0.15),
-    rgba(126, 0, 119, 0.75)),
-    url("../images/kitchen-banner.jpg");
 }
 #logo img {
-  height: 100px;
   width: auto;
-  margin-top: 24px;
-}
-#logo h1 {
-  font-family: 'Quirlycues';
-  font-size: 72px;
-  font-weight: normal;
-  padding-top: 24px;
-  color: #f9f9f9;
 }
 
 /*
@@ -104,7 +91,7 @@ table {
 }
 #categories h2 {
   color: #333;
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Stylish', cursive;
   font-size: 2em;
   margin-bottom: 12px;
 }
@@ -113,7 +100,7 @@ table {
   border-color: #ff58df;
   border-radius: 2.5px;
   border-style: solid !important;
-  background-color: #a44c9f;
+  background-color: #2c3e50;
   color: #f9f9f9;
   font-weight: bold;
   margin-top: 6px;
@@ -171,7 +158,7 @@ table {
 }
 #recipe h2 {
   color: #333;
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Lato', sans-serif;
   font-size: 2em;
   margin-bottom: 24px;
   margin-top: 12px;
@@ -211,7 +198,7 @@ table {
   box-shadow: 0 1px 0 rgba(0,0,0,.15);
 }
 .recipe-info i {
-  color: #a44c9f;
+  color: #8e44ad;
 }
 .recipe-ingredients {
   background-color: #f9f9f9;
@@ -244,7 +231,7 @@ table {
   font-size: 13px;
   line-height: 37px;
   font-weight: 600;
-  background: #a44c9f;
+  background: #16a085;
   color: #f9f9f9;
   -webkit-box-shadow: 0 1px 0 rgba(0,0,0,.15);
   -moz-box-shadow: 0 1px 0 rgba(0,0,0,.15);
@@ -284,7 +271,7 @@ table {
     left: -2.5em;
     top: 50%;
     margin-top: -1em;
-    background: #a44c9f;
+    background: #2980b9;
     height: 2em;
     width: 2em;
     line-height: 2em;
@@ -303,7 +290,7 @@ table {
 }
 .recipe-directions li:hover:after{
     left: -.5em;
-    border-left-color: #a44c9f;
+    border-left-color: #2980b9;
 }
 
 /*
@@ -312,7 +299,7 @@ table {
 */
 
 footer {
-  background-color: #a44c9f;
+  background-color: #2c3e50;
   color: #f9f9f9;
   margin-bottom: 24px;
   margin-top: 24px;
