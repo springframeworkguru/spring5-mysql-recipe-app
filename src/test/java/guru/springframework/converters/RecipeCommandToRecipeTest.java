@@ -1,22 +1,25 @@
 package guru.springframework.converters;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import guru.springframework.commands.CategoryCommand;
+import guru.springframework.commands.DirectionCommand;
 import guru.springframework.commands.IngredientCommand;
 import guru.springframework.commands.NotesCommand;
 import guru.springframework.commands.RecipeCommand;
 import guru.springframework.domain.Difficulty;
 import guru.springframework.domain.Recipe;
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class RecipeCommandToRecipeTest {
     public static final Long RECIPE_ID = 1L;
     public static final Integer COOK_TIME = Integer.valueOf("5");
     public static final Integer PREP_TIME = Integer.valueOf("7");
     public static final String DESCRIPTION = "My Recipe";
-    public static final String DIRECTIONS = "Directions";
     public static final Difficulty DIFFICULTY = Difficulty.EASY;
     public static final Integer SERVINGS = Integer.valueOf("3");
     public static final String SOURCE = "Source";
@@ -25,6 +28,8 @@ public class RecipeCommandToRecipeTest {
     public static final Long CAT_ID2 = 2L;
     public static final Long INGRED_ID_1 = 3L;
     public static final Long INGRED_ID_2 = 4L;
+    public static final Long DIRECT_ID_1 = 5L;
+    public static final Long DIRECT_ID_2 = 6L;
     public static final Long NOTES_ID = 9L;
 
     RecipeCommandToRecipe converter;
@@ -34,7 +39,7 @@ public class RecipeCommandToRecipeTest {
     public void setUp() throws Exception {
         converter = new RecipeCommandToRecipe(new CategoryCommandToCategory(),
                 new IngredientCommandToIngredient(new UnitOfMeasureCommandToUnitOfMeasure()),
-                new NotesCommandToNotes());
+                new NotesCommandToNotes(), new DirectionCommandToDirection());
     }
 
     @Test
@@ -56,7 +61,6 @@ public class RecipeCommandToRecipeTest {
         recipeCommand.setPrepTime(PREP_TIME);
         recipeCommand.setDescription(DESCRIPTION);
         recipeCommand.setDifficulty(DIFFICULTY);
-        recipeCommand.setDirections(DIRECTIONS);
         recipeCommand.setServings(SERVINGS);
         recipeCommand.setSource(SOURCE);
         recipeCommand.setUrl(URL);
@@ -83,6 +87,15 @@ public class RecipeCommandToRecipeTest {
 
         recipeCommand.getIngredients().add(ingredient);
         recipeCommand.getIngredients().add(ingredient2);
+        
+        DirectionCommand directionCommand1 = new DirectionCommand();
+        directionCommand1.setId(DIRECT_ID_1);
+        
+        DirectionCommand directionCommand2 = new DirectionCommand();
+        directionCommand2.setId(DIRECT_ID_2);
+        
+        recipeCommand.getDirections().add(directionCommand1);
+        recipeCommand.getDirections().add(directionCommand2);
 
         //when
         Recipe recipe  = converter.convert(recipeCommand);
@@ -93,13 +106,13 @@ public class RecipeCommandToRecipeTest {
         assertEquals(PREP_TIME, recipe.getPrepTime());
         assertEquals(DESCRIPTION, recipe.getDescription());
         assertEquals(DIFFICULTY, recipe.getDifficulty());
-        assertEquals(DIRECTIONS, recipe.getDirections());
         assertEquals(SERVINGS, recipe.getServings());
         assertEquals(SOURCE, recipe.getSource());
         assertEquals(URL, recipe.getUrl());
         assertEquals(NOTES_ID, recipe.getNotes().getId());
         assertEquals(2, recipe.getCategories().size());
         assertEquals(2, recipe.getIngredients().size());
+        assertEquals(2, recipe.getDirections().size());
     }
 
 }
