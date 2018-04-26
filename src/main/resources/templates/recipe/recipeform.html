@@ -191,10 +191,10 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="direction : ${recipe.directions}">
-											<th scope="row" th:text="${direction.getOrder()}">1</th>
+										<tr th:each="direction, stat : *{directionsAsList}">
+											<th scope="row" th:text="${direction.getOrder()}" th:field="*{directionsAsList[__${stat.index}__].order}">1</th>
 											<td><textarea class="form-control"
-													th:text="${direction.getDescription()}" id="field1"
+													th:text="${direction.getDescription()}" th:field="*{directionsAsList[__${stat.index}__].description}"
 													rows="3">A direction</textarea></td>
 										</tr>
 									</tbody>

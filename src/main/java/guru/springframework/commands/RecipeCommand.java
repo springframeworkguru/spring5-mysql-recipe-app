@@ -11,7 +11,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by jt on 6/21/17.
@@ -48,4 +50,8 @@ public class RecipeCommand {
     private Difficulty difficulty;
     private NotesCommand notes;
     private Set<CategoryCommand> categories = new HashSet<>();
+    
+    public List<DirectionCommand> directionsAsList() {
+    	return directions.stream().collect(Collectors.toList());
+    }
 }
