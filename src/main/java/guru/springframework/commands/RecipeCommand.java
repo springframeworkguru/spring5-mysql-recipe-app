@@ -1,19 +1,19 @@
 package guru.springframework.commands;
 
-import guru.springframework.domain.Difficulty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.validator.constraints.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+
+import org.hibernate.validator.constraints.URL;
+
+import guru.springframework.domain.Difficulty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Created by jt on 6/21/17.
@@ -44,14 +44,11 @@ public class RecipeCommand {
     @URL
     private String url;
 
-    private Set<IngredientCommand> ingredients = new HashSet<>();
-    private Set<DirectionCommand> directions = new HashSet<>();
+    private List<IngredientCommand> ingredients = new ArrayList<>();
+    private List<DirectionCommand> directions = new ArrayList<>();
     private Byte[] image;
     private Difficulty difficulty;
     private NotesCommand notes;
-    private Set<CategoryCommand> categories = new HashSet<>();
+    private List<CategoryCommand> categories = new ArrayList<>();
     
-    public List<DirectionCommand> directionsAsList() {
-    	return directions.stream().collect(Collectors.toList());
-    }
 }
