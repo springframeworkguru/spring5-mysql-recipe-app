@@ -7,6 +7,7 @@ import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 /**
  * Created by jt on 6/21/17.
@@ -47,17 +48,17 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand>{
         command.setImage(source.getImage());
         command.setNotes(notesConverter.convert(source.getNotes()));
 
-        if (source.getCategories() != null && source.getCategories().size() > 0){
+        if (!CollectionUtils.isEmpty(source.getCategories())){
             source.getCategories()
                     .forEach((Category category) -> command.getCategories().add(categoryConveter.convert(category)));
         }
 
-        if (source.getIngredients() != null && source.getIngredients().size() > 0){
+        if (!CollectionUtils.isEmpty(source.getIngredients())){
             source.getIngredients()
                     .forEach(ingredient -> command.getIngredients().add(ingredientConverter.convert(ingredient)));
         }
         
-        if (source.getDirections() != null && source.getDirections().size() > 0){
+        if (!CollectionUtils.isEmpty(source.getDirections())){
             source.getDirections()
                     .forEach(direction -> command.getDirections().add(directionConverter.convert(direction)));
         }

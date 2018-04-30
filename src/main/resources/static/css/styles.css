@@ -18,7 +18,7 @@
 body {
   background-color: #2c3e50;
   color: #666;
-  font-size: 16px;
+  font-size: 14px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   line-height: 1.50;
@@ -212,24 +212,24 @@ table {
   overflow: hidden;
 }
 .ingredients-list dt {
-  width: 15%;
+  width: 30%;
   float: left;
   margin: 0 0 8px;
   padding: 0 10px;
   font-size: 13px;
-  line-height: 37px;
+  line-height: 30px;
   background: #f9f9f9;
   -webkit-box-shadow: 0 1px 0 rgba(0,0,0,.15);
   -moz-box-shadow: 0 1px 0 rgba(0,0,0,.15);
   box-shadow: 0 1px 0 rgba(0,0,0,.15);
 }
 .ingredients-list dd {
-  width: 85%;
+  width: 70%;
   float: left;
   margin: 0 0 8px;
   padding: 0 15px;
   font-size: 13px;
-  line-height: 37px;
+  line-height: 30px;
   font-weight: 600;
   background: #16a085;
   color: #f9f9f9;
