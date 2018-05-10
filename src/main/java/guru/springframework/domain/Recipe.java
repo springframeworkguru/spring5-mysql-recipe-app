@@ -1,11 +1,26 @@
 package guru.springframework.domain;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by jt on 6/13/17.
@@ -26,11 +41,11 @@ public class Recipe {
     private String source;
     private String url;
 
-    @Lob
-    private String directions;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingredients = new HashSet<>();
+    private List<Ingredient> ingredients = new ArrayList<>();
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private List<Direction> directions = new ArrayList<>();
 
     @Lob
     private Byte[] image;
@@ -57,6 +72,12 @@ public class Recipe {
     public Recipe addIngredient(Ingredient ingredient){
         ingredient.setRecipe(this);
         this.ingredients.add(ingredient);
+        return this;
+    }
+    
+    public Recipe addDirection(Direction direction){
+    	direction.setRecipe(this);
+        this.directions.add(direction);
         return this;
     }
 }

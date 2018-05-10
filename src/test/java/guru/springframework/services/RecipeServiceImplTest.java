@@ -6,6 +6,7 @@ import guru.springframework.converters.RecipeCommandToRecipe;
 import guru.springframework.converters.RecipeToRecipeCommand;
 import guru.springframework.domain.Recipe;
 import guru.springframework.exceptions.NotFoundException;
+import guru.springframework.repositories.DirectionRepository;
 import guru.springframework.repositories.RecipeRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,6 +32,9 @@ public class RecipeServiceImplTest {
     RecipeRepository recipeRepository;
 
     @Mock
+    DirectionRepository directionRepository;
+    
+    @Mock
     RecipeToRecipeCommand recipeToRecipeCommand;
 
     @Mock
@@ -40,7 +44,7 @@ public class RecipeServiceImplTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
+        recipeService = new RecipeServiceImpl(recipeRepository, directionRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
