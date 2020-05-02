@@ -2,7 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -44,7 +44,7 @@ jobs:
             kcov --include-path=./codecov coverage/ tests/test
             - run:
                 name: Upload Codecov
-                command: |
+                command: |kcov
                   bash <(curl -s https://codecov.io/bash) -s coverage -d > upload.txt
                   bash <(curl -s https://codecov.io/bash) -s coverage
             - store_artifacts:
