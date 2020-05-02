@@ -3,6 +3,8 @@
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
 version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs:
   build:
     docker:
@@ -38,19 +40,8 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests! and gen code coverage
-      - run:
-          name: Run Tests
-          command: |
-            kcov --include-path=./codecov coverage/ tests/test
-            - run:
-                name: Upload Codecov
-                command: |kcov
-                  bash <(curl -s https://codecov.io/bash) -s coverage -d > upload.txt
-                  bash <(curl -s https://codecov.io/bash) -s coverage
-            - store_artifacts:
-                path: codecov.txt
-            - store_artifacts:
-                path: coverage
+      - codecov/upload:
+          file: {{ coverage_report_filepath }}
 #      - run: mvn integration-test cobertura:cobertura
 #
 #      - store_test_results:
