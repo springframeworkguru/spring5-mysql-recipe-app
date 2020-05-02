@@ -10,28 +10,28 @@ import static org.junit.Assert.assertEquals;
  */
 public class CategoryTest {
 
-    Category category;
+	Category category;
 
-    @Before
-    public void setUp(){
-        category = new Category();
-    }
+	@Before
+	public void setUp() {
+		category = new Category();
+	}
 
-    @Test
-    public void getId() throws Exception {
-        Long idValue = 4L;
+	@Test
+	public void getId() throws Exception {
+		Long idValue = 4L;
 
-        category.setId(idValue);
+		category.setId(idValue);
 
-        assertEquals(idValue, category.getId());
-    }
+		assertEquals(idValue, category.getId());
+	}
 
-    @Test
-    public void getDescription() throws Exception {
-    }
+	@Test
+	public void getDescription() throws Exception {
+	}
 
-    @Test
-    public void getRecipes() throws Exception {
-    }
+	@Test
+	public void getRecipes() throws Exception {
+	}
 
 }

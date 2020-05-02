@@ -12,19 +12,19 @@ import org.springframework.stereotype.Component;
  * Created by jt on 6/21/17.
  */
 @Component
-public class CategoryCommandToCategory implements Converter<CategoryCommand, Category>{
+public class CategoryCommandToCategory implements Converter<CategoryCommand, Category> {
 
-    @Synchronized
-    @Nullable
-    @Override
-    public Category convert(CategoryCommand source) {
-        if (source == null) {
-            return null;
-        }
+	@Synchronized
+	@Nullable
+	@Override
+	public Category convert(CategoryCommand source) {
+		if (source == null) {
+			return null;
+		}
 
-        final Category category = new Category();
-        category.setId(source.getId());
-        category.setDescription(source.getDescription());
-        return category;
-    }
+		final Category category = new Category();
+		category.setId(source.getId());
+		category.setDescription(source.getDescription());
+		return category;
+	}
 }
