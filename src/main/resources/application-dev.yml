@@ -9,6 +9,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: mysql
     show-sql: true
+    defer-datasource-initialization: true
 #    properties:
 #      javax:
 #        persistence:

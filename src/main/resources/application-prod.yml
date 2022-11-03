@@ -9,3 +9,4 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     database: mysql
     show-sql: false
+    defer-datasource-initialization: true
